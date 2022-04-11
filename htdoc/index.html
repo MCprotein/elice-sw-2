@@ -58,7 +58,27 @@
                 Hello, WEB!!!!
             </div>
         </div>
-
+        
+        <script>
+            console.log(this);
+        </script>
+        <input type="button" onclick="console.log(this);" value="1">
+        <input type="button" onclick="console.log(this);" value="2">
+        
+        <input type="button" value="night" onclick="
+        // 만약에 이 버튼의 value 값이 night라면 아래 코드가 실행되고,
+        if (this.value === 'night') {
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.querySelector('body').style.color = 'white';
+        this.value = 'day';
+        } else {
+        // 아니라면 아래 코드가 실행된다.
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        this.value = 'night';
+        }
+        ">
+<!-- 
         <a href="">오우</a>
         <input type="button" value="night" onclick="
         // alert('야간!');
@@ -69,7 +89,7 @@
         <input type="button" value="day" onclick="
         document.querySelector('body').style.backgroundColor = 'white';
         document.querySelector('body').style.color = 'black';
-        ">
+        "> -->
         <!-- onmouseleave = "alert('안녕히가세요');" -->
         <!-- document.querySelector('body').style.backgroundColor = 'red'; -->
         <!-- document.querySelector('#container').style.backgroundColor = 'blue'; -->
