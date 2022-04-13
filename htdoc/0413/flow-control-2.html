@@ -54,11 +54,12 @@
         </ul>
         <ul id='aa'>
         <script>
-            let tag;    
-            for (i=0; i<members.length; i++) {
+            let tag = "";
+            for (i=0; i<contents.length; i++) {
                 
-                tag += `<li> ${members[i]} </li>`;
-                document.querySelector('#aa').innerHTML = tag;}
+                // tag += `<li> ${contents[i]} </li>`;
+                // document.querySelector('#aa').innerHTML = tag;}
+                document.querySelector('#aa').innerHTML += `<li> ${contents[i]} </li>`;}
         </script>
         </ul>
     </body>
