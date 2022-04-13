@@ -65,24 +65,42 @@
         <input type="button" onclick="console.log(this);" value="1"> <!-- 이 버튼에 대한 정보 -->
         <input type="button" onclick="console.log(this);" value="2"> <!-- 이 버튼에 대한 정보 -->
         
+        <script>
+            function night() {
+                document.querySelector('body').style.backgroundColor = 'black';
+                document.querySelector('body').style.color = 'white';
+                let as = document.querySelectorAll('a');
+                for(let i = 0; i<as.length; i++) {
+                as[i].style.color = 'white';}
+            }
+            function day() {
+                document.querySelector('body').style.backgroundColor = 'white';
+                document.querySelector('body').style.color = 'black';
+                let as = document.querySelectorAll('a');
+                for(let i = 0; i<as.length; i++) {
+                as[i].style.color = 'black';}
+            }
+            function dayNight(mode) {
+                if(mode === 'night') {
+                    night();
+                } else {
+                    day();
+                }
+            }
+        </script>
+
         <input type="button" value="night" onclick="
         // 만약에 이 버튼의 value 값이 night라면 아래 코드가 실행되고,
-        let as = document.querySelectorAll('a');
-        if (this.value === 'night') {
-        document.querySelector('body').style.backgroundColor = 'black';
-        document.querySelector('body').style.color = 'white';
-        this.value = 'day';
         
-        for(let i = 0; i<as.length; i++) {
-        as[i].style.color = 'white';}
-    
+        if (this.value === 'night') {
+            // night();
+            dayNight('night');
+            this.value = 'day';
         } else {
         // 아니라면 아래 코드가 실행된다.
-        document.querySelector('body').style.backgroundColor = 'white';
-        document.querySelector('body').style.color = 'black';
-        this.value = 'night';
-        for(let i = 0; i<as.length; i++) {
-        as[i].style.color = 'black';}
+            // day();
+            dayNight('day');
+            this.value = 'night';
         }
         ">
 
