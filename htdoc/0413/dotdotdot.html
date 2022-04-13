@@ -1,0 +1,44 @@
+<html>
+    <head>
+    </head>
+<body>
+
+    
+    javascript is <span 
+        style="
+        background-color: skyblue;
+        padding: 0 5px;
+        cursor:pointer;
+        "
+        onclick="
+        document.querySelector('#hidden').style.display='inline';
+        this.style.display='none';
+    ">...</span> <span id="hidden" style="display:none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur id inventore in necessitatibus praesentium, minima corporis animi amet hic dolorem ratione nulla dolores. Corporis dolores omnis illum libero impedit necessitatibus.</span>
+
+    <hr> <!-- 수평선 -->
+    javascript is <span 
+        style="
+        background-color: skyblue;
+        padding: 0 5px;
+        cursor:pointer;
+        "
+        onclick="
+        this.style.display='none';
+        document.querySelector('#content').innerHTML = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur id inventore in necessitatibus praesentium, minima corporis animi amet hic dolorem ratione nulla dolores. Corporis dolores omnis illum libero impedit necessitatibus.`
+    ">...</span> 
+    <span id="content"></span>
+    <!-- innerHTML 반드시 알아야함 -->
+    <!-- 특정태그 안에 내용 넣을때, 가져올때 사용 -->
+
+
+    <div>
+        javascript is <span type="button" id="show_dot" onclick="
+            if($(this).next().css('display')==='none') {
+                $(this).next().show();
+            }
+        ">...</span>
+        <span style="display:none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ratione necessitatibus blanditiis labore perspiciatis maiores alias eveniet neque odio facilis nostrum quas porro, placeat nisi adipisci, deserunt iure, nemo commodi!</span>
+    </div>
+
+</body>
+</html>
