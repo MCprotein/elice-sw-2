@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WEB - Welcome</title>
+        <meta charset="UTF-8">
+        <style>
+            h1 {
+                border-bottom: 10px solid green;
+                padding: 5px;
+                margin-bottom: 0;
+            }
+
+            h1 a {
+                text-decoration: none;
+            }
+
+            ol {
+                
+                margin-top: 0;
+            }
+            @media all and (min-width: 480px) { 
+                #container {
+                display: grid;
+                grid-template-columns: 150px 1fr;
+                transition: back;
+            }
+            ol {
+                border-right: 10px solid pink;
+            }
+            }
+            
+
+        </style>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S77C6SJ8FY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S77C6SJ8FY');
+</script>
+
+
+    </head>
+    
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <div id="container">
+            <ol>
+                <li><a href="1.html">html</a> </li>
+                <li><a href="2.html">css</a></li>
+                <li><a href="3.html">javascript</a></li>
+            </ol>
+            <div>
+                <h2>Welcome</h2>
+                Hello, WEB!!!!
+            </div>
+        </div>
+        
+        <script>
+            console.log(this); // 화면 전체의 정보
+        </script>
+        <input type="button" onclick="console.log(this);" value="1"> <!-- 이 버튼에 대한 정보 -->
+        <input type="button" onclick="console.log(this);" value="2"> <!-- 이 버튼에 대한 정보 -->
+        
+        <input type="button" value="night" onclick="
+        // 만약에 이 버튼의 value 값이 night라면 아래 코드가 실행되고,
+        let as = document.querySelectorAll('a');
+        if (this.value === 'night') {
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.querySelector('body').style.color = 'white';
+        this.value = 'day';
+        
+        for(let i = 0; i<as.length; i++) {
+        as[i].style.color = 'white';}
+    
+        } else {
+        // 아니라면 아래 코드가 실행된다.
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        this.value = 'night';
+        for(let i = 0; i<as.length; i++) {
+        as[i].style.color = 'black';}
+        }
+        ">
+
+        
+
+    </body>
+</html>
