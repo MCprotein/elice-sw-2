@@ -1,0 +1,61 @@
+.navbar-brand {
+    margin: 0 10px 0 20px;
+}
+
+.banner-image img {
+    border-radius: 50px;
+    margin: 30px auto;
+    display: block;
+    
+}
+
+.banner-image {
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+}
+
+.intro img {
+    width: 500px;
+    height: 500px;
+    margin: 30px;
+}
+
+.intro-intro {
+    background-color: rgb(215, 216, 217);
+}
+
+.intro-hobby {
+    margin: 20px 0 0 0;
+}
+
+.intro-drink {
+    background-color: rgb(215, 216, 217);
+}
+
+.backend {
+    text-align: center;
+    margin: 20px;
+}
+
+.expect {
+    margin: 20px;
+    text-align: center;
+}
+
+.coworker {
+    margin: 20px;
+    text-align: center;
+}
+
+.coworker-intro img {
+    width: 400px;
+    height: 600px;
+}
+
+#nav-blog, #nav-git {
+    justify-content: end;
+    text-align: right;
+}
