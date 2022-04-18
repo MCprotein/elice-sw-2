@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let topics = [
+                {id:1, title:'html', body:'html is ..'},
+                {id:2, title:'css', body:'css is ..'}
+            ]
+            
+        </script>
+    </head>
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <nav>
+            <ol>
+                <!-- <li><a href="1.html">html</a></li>
+                <li><a href="2.html">css</a></li>
+                <li><a href="3.html">javascript</a></li> -->
+            </ol>
+        </nav>
+        <article>
+            <h2>Welcome</h2>
+            Hello, WEB
+        </article>
+
+        <script>
+            // function nav() {}
+            // let nav = function() {}
+
+//             function callback(e){
+//                 console.log(e);
+//                 return `<li>${e}</li>`;
+//             }
+//              nums.map(callback).join('');
+//              callback=function(e){
+//                  console.log(e);
+//                  return `<li>${e}</li>`;
+//              }
+//              nums.map(callback).join('');
+//              nums.map((e)=>{
+//              return `<li>${e}</li>`;
+//              }).join('');
+//              nums.map(e=>{
+//              return `<li>${e}</li>`;
+//              }).join('');
+//              nums.map(e=>`<li>${e}</li>`).join('');
+
+            let nav = () => {
+                let navTag = '';
+            for(let i = 0; i<topics.length; i++) {
+                navTag += `<li>
+                    <a href="/read/${topics[i].id}" id="${topics[i].id}" onclick="
+                        event.preventDefault();
+                        console.log(event.target.id);
+                        for (let i = 0; i < topics.length; i++) {
+                            if (topics[i].id === Number(event.target.id)) {
+                                document.querySelector('article').innerHTML = '<h2>${topics[i].title}</h2>${topics[i].body}';
+                                break;
+                            }
+                        }
+                    ">
+                            ${topics[i].title}
+                        </a>
+                    
+                    </li>`;
+            }
+            document.querySelector('nav ol').innerHTML = navTag;
+            
+            }
+
+            nav();
+        </script>
+    </body>
+</html> 
