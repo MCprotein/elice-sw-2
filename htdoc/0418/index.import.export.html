@@ -42,6 +42,20 @@
 
   gtag('config', 'G-S77C6SJ8FY');
 </script>
+<script type="module">
+    import {dayNight} from './daynight.js';
+    console.log(dayNight);
+    function listener(evt) {
+        if(evt.target.value === 'night') {
+            dayNight('night');
+            evt.target.value = 'day';
+        } else {
+            dayNight('day');
+            evt.target.value = 'night';
+        }
+    }
+    document.querySelector('#dayNightBtn').addEventListener('click', listener);
+</script>
 
 
     </head>
@@ -66,35 +80,10 @@
         <input type="button" onclick="console.log(this);" value="1"> <!-- 이 버튼에 대한 정보 -->
         <input type="button" onclick="console.log(this);" value="2"> <!-- 이 버튼에 대한 정보 -->
         
-        <script>
-            function night() {
-                // document.querySelector('body').style.backgroundColor = 'black';
-                $('body').css('background-color', 'black').css('color', 'white');
-                // $('body').css('background-color', 'black');
-                // document.querySelector('body').style.color = 'white';
-                // $('body').css('color', 'white');
-                $('a').css('color', 'white').css('text-decoration', 'underline');
-                // let as = document.querySelectorAll('a');
-                // for(let i = 0; i<as.length; i++) {
-                //     as[i].style.color = 'white';}
-            }
-            function day() {
-                document.querySelector('body').style.backgroundColor = 'white';
-                document.querySelector('body').style.color = 'black';
-                let as = document.querySelectorAll('a');
-                for(let i = 0; i<as.length; i++) {
-                    as[i].style.color = 'black';}
-            }
-            function dayNight(mode) {
-                if(mode === 'night') {
-                    night();
-                } else {
-                    day();
-                }
-            }
-        </script>
+        <script src="daynight.js"></script>
 
-        <input type="button" value="night" onclick="
+        <input type="button" value="night" id="dayNightBtn" 
+        <!-- onclick="
         // 만약에 이 버튼의 value 값이 night라면 아래 코드가 실행되고,
         
         if (this.value === 'night') {
@@ -106,9 +95,11 @@
             // day();
             dayNight('day');
             this.value = 'night';
-        }
-        ">
-
+        } -->
+        "
+        >
+    <!-- <div id="target">toogle</div>
+    <input type="button" value="hide/show" onclick="$('#target').toggle();"> -->
         
 
     </body>

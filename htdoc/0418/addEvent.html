@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <input type="button" id="btn1" value="egoing">
+        <input type="button" id='btn2' value="duru">
+        <script>
+            function l(evt) {
+                alert(evt.target.value);
+            }
+            function l2() {
+                alert(2);
+            }
+
+            document.querySelector('#btn1').addEventListener('click', l)
+            // document.querySelector('#btn1').addEventListener('click', l2)
+            document.querySelector('#btn2').addEventListener('click', l)
+        </script>
+    </body>
+</html>
