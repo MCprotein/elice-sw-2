@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <title>WEB - Welcome</title>
+        <meta charset="UTF-8">
+        <style>
+            h1 {
+                border-bottom: 10px solid green;
+                padding: 5px;
+                margin-bottom: 0;
+            }
+
+            h1 a {
+                text-decoration: none;
+            }
+
+            ol {
+                
+                margin-top: 0;
+            }
+            @media all and (min-width: 480px) { 
+                #container {
+                display: grid;
+                grid-template-columns: 150px 1fr;
+                transition: back;
+            }
+            ol {
+                border-right: 10px solid pink;
+            }
+            }
+            
+
+        </style>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S77C6SJ8FY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S77C6SJ8FY');
+</script>
+
+
+    </head>
+    
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <div id="container">
+            <ol>
+                <li><a href="1.html">html</a> </li>
+                <li><a href="2.html">css</a></li>
+                <li><a href="3.html">javascript</a></li>
+            </ol>
+            <div>
+                <h2>Welcome</h2>
+                Hello, WEB!!!!
+            </div>
+        </div>
+        
+        <script>
+            console.log(this); // 화면 전체의 정보
+        </script>
+        <input type="button" onclick="console.log(this);" value="1"> <!-- 이 버튼에 대한 정보 -->
+        <input type="button" onclick="console.log(this);" value="2"> <!-- 이 버튼에 대한 정보 -->
+        
+        <script>
+            function night() {
+                // document.querySelector('body').style.backgroundColor = 'black';
+                $('body').css('background-color', 'black').css('color', 'white');
+                // $('body').css('background-color', 'black');
+                // document.querySelector('body').style.color = 'white';
+                // $('body').css('color', 'white');
+                $('a').css('color', 'white').css('text-decoration', 'underline');
+                // let as = document.querySelectorAll('a');
+                // for(let i = 0; i<as.length; i++) {
+                //     as[i].style.color = 'white';}
+            }
+            function day() {
+                document.querySelector('body').style.backgroundColor = 'white';
+                document.querySelector('body').style.color = 'black';
+                let as = document.querySelectorAll('a');
+                for(let i = 0; i<as.length; i++) {
+                    as[i].style.color = 'black';}
+            }
+            function dayNight(mode) {
+                if(mode === 'night') {
+                    night();
+                } else {
+                    day();
+                }
+            }
+        </script>
+
+        <input type="button" value="night" onclick="
+        // 만약에 이 버튼의 value 값이 night라면 아래 코드가 실행되고,
+        
+        if (this.value === 'night') {
+            // night();
+            dayNight('night');
+            this.value = 'day';
+        } else {
+        // 아니라면 아래 코드가 실행된다.
+            // day();
+            dayNight('day');
+            this.value = 'night';
+        }
+        ">
+
+        
+
+    </body>
+</html>
