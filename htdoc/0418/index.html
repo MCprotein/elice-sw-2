@@ -4,13 +4,17 @@
         <script>
             let topics = [
                 {id:1, title:'html', body:'html is ..'},
-                {id:2, title:'css', body:'css is ..'}
+                {id:2, title:'css', body:'css is ..'},
+                {id:3, title:'js', body:'js is ..'}
             ]
             
         </script>
     </head>
     <body>
-        <h1><a href="index.html">WEB</a></h1>
+        <h1><a href="index.html" onclick="
+            event.preventDefault();
+            document.querySelector('article').innerHTML = '<h2>Welcome</h2>' + 'Hello, WEB';
+            ">WEB</a></h1>
         <nav>
             <ol>
                 <!-- <li><a href="1.html">html</a></li>
