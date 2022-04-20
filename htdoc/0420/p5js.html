@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+    </head>
+    <body>
+        <h1>WEB</h1>
+        <style>
+            h1 {
+                font-size: 100px;
+            }
+            main {
+                position:absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        </style>
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                circle(100, 100, 100);
+                circle(200, 200, 50);
+            }
+
+            function draw() {
+                console.log('draw');
+                noStroke();
+                fill(100, 50)
+                circle(mouseX, mouseY, Math.random()* 100);
+            }
+        </script>
+    </body>
+</html>
