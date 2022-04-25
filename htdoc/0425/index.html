@@ -2,7 +2,7 @@
     <body>
         <header>
             <h1><a href="/" onclick="
-                
+                event.preventDefault();
                 welcome(event);                    
             ">WEB</a></h1>
         </header>
@@ -48,13 +48,14 @@
                     .then(res => res.json())
                     .then(topics => {
                         const tag = topics.map(e=>`
-                    <li>
-                        <a href="/read/${e.id}" id="${e.id}" onclick="navHandler(event);">
+                        <li>
+                            <a href="/read/${e.id}" id="${e.id}" onclick="navHandler(event);">
                             ${e.title}
-                        </a>
-                    </li>`).join('');
-                document.querySelector('nav>ol').innerHTML = tag;
+                            </a>
+                        </li>`).join('');
+                    document.querySelector('nav>ol').innerHTML = tag;
                     })
+                    document.querySelector('nav>ol').innerHTML = 'loading ...'
                 
             }
             function welcome(e){
@@ -63,10 +64,17 @@
                 control();
             }
             function read(){
-                const topic = topics.filter(e => e.id === selectedId)[0]; 
-                const content = `<h2>${topic.title}</h2>${topic.body}`;
-                document.querySelector('article').innerHTML = content;
-                control();
+                fetch('http://localhost:3000/topics/' + selectedId)
+                    .then(res => res.json())
+                    .then(topic => {
+                        const content = `<h2>${topic.title}</h2>${topic.body}`;
+                        document.querySelector('article').innerHTML = content;
+                        control();
+                    })
+                // const topic = topics.filter(e => e.id === selectedId)[0]; 
+                // const content = `<h2>${topic.title}</h2>${topic.body}`;
+                // document.querySelector('article').innerHTML = content;
+                // control();
             }
             function createHandler(e){
                 e.preventDefault();
