@@ -11,29 +11,9 @@
       "body": "css is ..."
     },
     {
-      "id": 3,
-      "title": "javascript",
-      "body": "js is ..."
-    },
-    {
-      "title": "json",
-      "body": "json is ..",
-      "id": 4
-    },
-    {
-      "title": "n",
-      "body": "n",
-      "id": 5
-    },
-    {
-      "title": "z",
-      "body": "z",
-      "id": 6
-    },
-    {
-      "title": "e",
-      "body": "e",
-      "id": 7
+      "title": "깐쭈럴",
+      "body": "control",
+      "id": 3
     }
   ]
 }
