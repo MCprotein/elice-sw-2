@@ -80,12 +80,21 @@
                 e.preventDefault();
                 const t = e.target.title.value;
                 const b = e.target.body.value;
-                const newTopic = {id:nextId, title:t, body:b};
-                topics.push(newTopic);
-                nav();
-                selectedId = nextId;
-                nextId = nextId + 1;
-                read();
+                fetch('http://localhost:3000/topics', {
+                    method:'POST',
+                    headers: {
+                      'Content-Type':'application/json'  
+                    },
+                    body:JSON.stringify({title: t, body: b})
+                    
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        nav();
+                        selectedId = data.id;
+                        read();
+                    })
             }
             function create(){
                 const content = `
