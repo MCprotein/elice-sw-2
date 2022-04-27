@@ -1,0 +1,29 @@
+{
+  "topics": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "body": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "오ㅏ웅",
+      "body": "오웅"
+    },
+    {
+      "title": "하잇",
+      "body": "하잇fsda",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
