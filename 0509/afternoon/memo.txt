@@ -2,3 +2,6 @@ middleware => express 핵심
 
 좀더 큰 rounter 덩어리
 
+요청 -> 위 router -> 우리가 원하는 기능을 함수. 미들웨어 -> 응답
+
+ 
