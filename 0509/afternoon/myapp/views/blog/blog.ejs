@@ -15,7 +15,7 @@
     <!-- 글 제목 -->
     <p>글 내용들</p>
     <% for(let i = 0; i<content.length; i++) {%>
-        <a href=""><%=content[i].title %></a>
+        <a href="/blog/read/<%= content[i].no %>"><%=content[i].title %></a>
         <br><br>
     <% } %>
 </body>
