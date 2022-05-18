@@ -121,6 +121,23 @@ router.use(function (req, res, next) {
   next()
 })
 //api 과부하: Apache JMeter
+// 외래키를 타고, 타고, 타고, 3~4 가지의 개념을 
+// 하나의 큰 쿼리 경우들이 많이 생긴다.
+// 1일 접속자 10만명단위
+
+// node pm2 => 서버 과부하 있으면 서버 터짐, cpu 점유율이 초과되거나 메모리
+// 1000명 을 25명단위로 자동으로 나누어서 과부하에 대한 영역을 줄여주고 안정을 높여주는 역할
+// aws 로드밸런싱 : 컴퓨터 1대를 3대로
+// pm2: cpu영역을 할당해서 안정성있게 처리해주는 역할
+
+// React, vue, svelte
+// single page application
+// SPA => ReadableStreamDefaultController={, }
+// Web => SPA => 모바일 =>  업로드 반영 18시간
+
+// SPA => 모바일
+// Saas 
+
 router.get('/foo', function (req, res, next) {
   res.send('you viewed this page ' + req.session.views['/foo'] + ' times')
 })

@@ -22,6 +22,7 @@ const blog = new Schema({
     timestamps: true,
 });
 
+// autoIncrement 설정
 blog.plugin(autoIncrement.plugin, {
     model: 'blog', 
     field: 'no',
