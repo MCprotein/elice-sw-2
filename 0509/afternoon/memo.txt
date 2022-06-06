@@ -4,4 +4,24 @@ middleware => express 핵심
 
 요청 -> 위 router -> 우리가 원하는 기능을 함수. 미들웨어 -> 응답
 
- 
+ REST API 설명
+
+CORS 설명 : 포트달라서 헤더값 못가져옴
+ Access to fetch at 'http://127.0.0.1:3000/expost/getlist' 
+ from origin 'https://cdpn.io' has been blocked by CORS policy: 
+ No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+ 암호화.
+
+ hash함수.
+ 안녕하세요 ==> 복호화
+ 앱스토어, 플레이스토어 앱 출시 => 인증, 앱정보 기록하는 .keystore
+
+ 블록체인 => 여러개 연결 => 전체 데이터를 복호화
+
+ https://www.functions-online.com/hash.html
+ https://blockchaindemo.io/
+
+
+npm i express-validator 설치
+npm i bcrypt
