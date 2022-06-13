@@ -67,14 +67,42 @@ function Article(props) {
   );
 }
 
+function Create(props) {
+  return (
+    <article>
+      <h2>Create</h2>
+      <form
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          alert("submit!");
+          const title = evt.target.title.value;
+          const body = evt.target.body.value;
+          console.log(title, body);
+          props.onCreate(title, body);
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title"></input>
+        </p>
+        <p>
+          <textarea name="body" placeholder="body"></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Create"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+
 function App() {
   const [mode, setMode] = useState("WELCOME");
   const [id, setId] = useState(null);
-  console.log(id);
-  const topics = [
+  const [nextId, setNextId] = useState(3);
+  const [topics, setTopics] = useState([
     { id: 1, title: "html", body: "html is ..." },
     { id: 2, title: "css", body: "css is ..." },
-  ];
+  ]);
   function createHandler() {
     alert("create!");
   }
@@ -90,6 +118,19 @@ function App() {
       }
     })[0];
     content = <Article title={topic.title} body={topic.body}></Article>;
+  } else if (mode === "CREATE") {
+    content = (
+      <Create
+        onCreate={(title, body) => {
+          const newTopic = { id: nextId, title, body };
+          const newTopics = [...topics, newTopic];
+          setTopics(newTopics);
+          setId(nextId);
+          setMode("READ");
+          setNextId((nextId) => nextId + 1);
+        }}
+      ></Create>
+    );
   }
   return (
     <div>
@@ -111,7 +152,12 @@ function App() {
         variant="contained"
         aria-label="outlined primary button group"
       >
-        <Button variant="outlined" onClick={createHandler}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setMode("CREATE");
+          }}
+        >
           Create
         </Button>
         <Button variant="outlined" onClick={() => alert("Update!")}>
