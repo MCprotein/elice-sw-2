@@ -2,11 +2,21 @@ import "./App.css";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import styled from "styled-components";
+
+const HeaderTagStyled = styled(HeaderTag)`
+  border-bottom: 1px solid gray;
+  color: blue;
+`;
 
 function HeaderTag(props) {
-  const myStyle = { borderBottom: "1px solid gray", padding: "10px" };
+  const myStyle = {
+    borderBottom: "1px solid gray",
+    padding: "10px",
+    fontSize: "20px",
+  };
   return (
-    <header style={myStyle}>
+    <header className={props.className} style={myStyle}>
       <h1>
         <a
           href="/"
@@ -83,11 +93,11 @@ function App() {
   }
   return (
     <div>
-      <HeaderTag
+      <HeaderTagStyled
         onSelect={() => {
           setMode("WELCOME");
         }}
-      ></HeaderTag>
+      ></HeaderTagStyled>
       <Nav
         data={topics}
         onSelect={(id) => {
