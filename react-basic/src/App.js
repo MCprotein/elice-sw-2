@@ -4,8 +4,9 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
 function HeaderTag(props) {
+  const myStyle = { borderBottom: "1px solid gray", padding: "10px" };
   return (
-    <header>
+    <header style={myStyle}>
       <h1>
         <a
           href="/"
