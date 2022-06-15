@@ -1,41 +1,29 @@
 import "./App.css";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import styled from "styled-components";
-import { Link, Routes, Route, useParams } from "react-router-dom";
-import { Nav } from "./Nav";
+import { Link, Routes, Route, useParams, useNavigate } from "react-router-dom";
 
-const HeaderTagStyled = styled(HeaderTag)`
-  border-bottom: 1px solid gray;
-  color: blue;
-`;
-
-function HeaderTag(props) {
-  const myStyle = {
-    borderBottom: "1px solid gray",
-    padding: "10px",
-    fontSize: "20px",
-  };
+function Header(props) {
   return (
-    <header className={props.className} style={myStyle}>
+    <header className={props.className}>
       <h1>
         <Link
           to="/"
           onClick={(evt) => {
-            // evt.preventDefault();
-            console.log(props);
             props.onSelect();
-            console.log("evt", evt);
           }}
         >
-          Web
+          WWW
         </Link>
       </h1>
     </header>
   );
 }
-
+const HeaderStyled = styled(Header)`
+  border-bottom: 1px solid gray;
+  color: red;
+`;
 function Article(props) {
   return (
     <article>
@@ -44,7 +32,27 @@ function Article(props) {
     </article>
   );
 }
-
+function Nav(props) {
+  const liTags = props.data.map((e) => {
+    return (
+      <li key={e.id}>
+        <Link
+          to={"/read/" + e.id}
+          onClick={(evt) => {
+            props.onSelect(e.id);
+          }}
+        >
+          {e.title}
+        </Link>
+      </li>
+    );
+  });
+  return (
+    <nav>
+      <ol>{liTags}</ol>
+    </nav>
+  );
+}
 function Create(props) {
   return (
     <article>
@@ -52,10 +60,8 @@ function Create(props) {
       <form
         onSubmit={(evt) => {
           evt.preventDefault();
-          alert("submit!");
           const title = evt.target.title.value;
           const body = evt.target.body.value;
-          console.log(title, body);
           props.onCreate(title, body);
         }}
       >
@@ -72,7 +78,46 @@ function Create(props) {
     </article>
   );
 }
-
+function Read(props) {
+  const params = useParams();
+  const id = Number(params.topic_id);
+  const topic = props.topics.filter((e) => {
+    if (e.id === id) {
+      return true;
+    } else {
+      return false;
+    }
+  })[0];
+  return <Article title={topic.title} body={topic.body}></Article>;
+}
+function Control(props) {
+  const params = useParams();
+  const id = Number(params.topic_id);
+  let contextUI = null;
+  if (id) {
+    contextUI = (
+      <>
+        <Button variant="outlined">Update</Button>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            props.onDelete(id);
+          }}
+        >
+          Delete
+        </Button>
+      </>
+    );
+  }
+  return (
+    <>
+      <Button component={Link} to="/create" variant="outlined">
+        Create
+      </Button>
+      {contextUI}
+    </>
+  );
+}
 function App() {
   const [mode, setMode] = useState("WELCOME"); // todo 삭제 예정
   const [id, setId] = useState(null); // todo 삭제 예정
@@ -81,61 +126,44 @@ function App() {
     { id: 1, title: "html", body: "html is ..." },
     { id: 2, title: "css", body: "css is ..." },
   ]);
-
+  const navigate = useNavigate();
   return (
     <div>
-      <HeaderTagStyled onSelect={headerHandler()}></HeaderTagStyled>
-      <Nav data={topics} onSelect={navHandler()} />
+      <HeaderStyled onSelect={headerHandler()}></HeaderStyled>
+      <Nav data={topics} onSelect={navHandler()}></Nav>
       <Routes>
         <Route
           path="/"
-          element={<Article title="welcome" body="Hello, Web!"></Article>}
+          element={<Article title="Welcome" body="Hello, WEB!"></Article>}
         ></Route>
         <Route
           path="/create"
           element={<Create onCreate={onCreateHandler()}></Create>}
         ></Route>
         <Route
-          path="/Read/:topicId"
+          path="/read/:topic_id"
           element={<Read topics={topics}></Read>}
         ></Route>
       </Routes>
-      <ButtonGroup
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        <Button
-          component={Link}
-          to="/create"
-          variant="outlined"
-          onClick={createHandler()}
-        >
-          Create
-        </Button>
-        <Button variant="outlined" onClick={() => alert("Update!")}>
-          Update
-        </Button>
-        <Button variant="outlined" onClick={deleteHandler()}>
-          Delete
-        </Button>
-      </ButtonGroup>
+      <Routes>
+        {["/", "/read/:topic_id", "/update/:topic_id"].map((path) => {
+          return (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <Control
+                  onDelete={(id) => {
+                    deleteHandler(id);
+                  }}
+                ></Control>
+              }
+            ></Route>
+          );
+        })}
+      </Routes>
     </div>
   );
-
-  function Read({ topics }) {
-    const params = useParams();
-    const id = Number(params.topicId);
-    console.log("params", params);
-    const topic = topics.filter((e) => {
-      if (e.id === id) {
-        return true;
-      } else {
-        return false;
-      }
-    })[0];
-    return <Article title={topic.title} body={topic.body}></Article>;
-  }
-
   function onCreateHandler() {
     return (title, body) => {
       const newTopic = { id: nextId, title, body };
@@ -152,22 +180,19 @@ function App() {
     return (id) => {
       setMode("READ");
       setId(id);
-      console.log(mode);
     };
   }
 
-  function deleteHandler() {
-    return () => {
-      const newTopics = topics.filter((e) => {
-        if (e.id === id) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-      setTopics(newTopics);
-      setMode("WELCOME");
-    };
+  function deleteHandler(id) {
+    const newTopics = topics.filter((e) => {
+      if (e.id === id) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setTopics(newTopics);
+    navigate("/");
   }
 
   function createHandler() {
