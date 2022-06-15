@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Nav } from "./Nav";
 
 const HeaderTagStyled = styled(HeaderTag)`
   border-bottom: 1px solid gray;
@@ -32,30 +33,6 @@ function HeaderTag(props) {
         </Link>
       </h1>
     </header>
-  );
-}
-
-function Nav(props) {
-  const list = props.data.map((e) => {
-    return (
-      <li key={e.id}>
-        <Link
-          to={"/read/" + e.id}
-          onClick={(evt) => {
-            // evt.preventDefault();
-            props.onSelect(e.id);
-          }}
-        >
-          {e.title}
-        </Link>
-      </li>
-    );
-  });
-
-  return (
-    <nav>
-      <ol>{list}</ol>
-    </nav>
   );
 }
 
@@ -104,9 +81,6 @@ function App() {
     { id: 1, title: "html", body: "html is ..." },
     { id: 2, title: "css", body: "css is ..." },
   ]);
-  function createHandler() {
-    alert("create!");
-  }
   let content = null;
   if (mode === "WELCOME") {
     content = <Article title="welcome" body="Hello, WEB!"></Article>;
@@ -135,19 +109,8 @@ function App() {
   }
   return (
     <div>
-      <HeaderTagStyled
-        onSelect={() => {
-          setMode("WELCOME");
-        }}
-      ></HeaderTagStyled>
-      <Nav
-        data={topics}
-        onSelect={(id) => {
-          setMode("READ");
-          setId(id);
-          console.log(mode);
-        }}
-      />
+      <HeaderTagStyled onSelect={headerHandler()}></HeaderTagStyled>
+      <Nav data={topics} onSelect={navHandler()} />
       {content}
       <ButtonGroup
         variant="contained"
@@ -157,34 +120,53 @@ function App() {
           component={Link}
           to="/create"
           variant="outlined"
-          onClick={() => {
-            setMode("CREATE");
-          }}
+          onClick={createHandler()}
         >
           Create
         </Button>
         <Button variant="outlined" onClick={() => alert("Update!")}>
           Update
         </Button>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            const newTopics = topics.filter((e) => {
-              if (e.id === id) {
-                return false;
-              } else {
-                return true;
-              }
-            });
-            setTopics(newTopics);
-            setMode("WELCOME");
-          }}
-        >
+        <Button variant="outlined" onClick={deleteHandler()}>
           Delete
         </Button>
       </ButtonGroup>
     </div>
   );
+
+  function navHandler() {
+    return (id) => {
+      setMode("READ");
+      setId(id);
+      console.log(mode);
+    };
+  }
+
+  function deleteHandler() {
+    return () => {
+      const newTopics = topics.filter((e) => {
+        if (e.id === id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      setTopics(newTopics);
+      setMode("WELCOME");
+    };
+  }
+
+  function createHandler() {
+    return () => {
+      setMode("CREATE");
+    };
+  }
+
+  function headerHandler() {
+    return () => {
+      setMode("WELCOME");
+    };
+  }
 }
 
 export default App;
