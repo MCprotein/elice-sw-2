@@ -27,7 +27,10 @@ function Child2() {
   return (
     <div style={themes}>
       <h1>2</h1>
-      <Child3></Child3>
+      <context.Provider value={{ ...themes, border: "blue 5px dashed" }}>
+        {/* 오버라이딩 */}
+        <Child3></Child3>
+      </context.Provider>
     </div>
   );
 }
